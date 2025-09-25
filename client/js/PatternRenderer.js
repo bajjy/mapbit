@@ -295,7 +295,7 @@ export class PatternRenderer {
             return;
         }
         
-        const scaledSize = this.spriteSize * this.scale;
+        const scaledSize = this.spriteSize * this.scale * this.patternProperties.scale;
         
         // Calculate position offset based on alignment
         let offsetX = 0;
@@ -453,7 +453,10 @@ export class PatternRenderer {
                 spriteSheet: !!this.spriteSheet,
                 spriteSheetSize: this.spriteSheet ? `${this.spriteSheet.width}x${this.spriteSheet.height}` : 'null',
                 colorOverlay: this.patternProperties.color,
-                colorOpacity: this.patternProperties.colorOpacity
+                colorOpacity: this.patternProperties.colorOpacity,
+                spriteScale: this.scale,
+                patternScale: this.patternProperties.scale,
+                finalSize: this.spriteSize * this.scale * this.patternProperties.scale
             });
         }
                     

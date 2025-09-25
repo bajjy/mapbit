@@ -652,6 +652,15 @@ export class MapManager {
         }
     }
 
+    setPatternScale(scale) {
+        if (this.patternRenderer) {
+            this.patternRenderer.setPatternProperties({ scale: scale });
+            if (this.spriteMode) {
+                this.renderBuildingsWithPatterns();
+            }
+        }
+    }
+
     setPatternOpacity(opacity) {
         if (this.patternRenderer) {
             this.patternRenderer.setPatternProperties({ opacity: opacity });

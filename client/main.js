@@ -435,6 +435,16 @@ class App {
                 this.updatePatternSpacingDisplay(spacing);
             });
         }
+        
+        // Pattern scale
+        const patternScaleSlider = document.getElementById('patternScale');
+        if (patternScaleSlider) {
+            patternScaleSlider.addEventListener('input', (e) => {
+                const scale = parseFloat(e.target.value);
+                this.mapManager.setPatternScale(scale);
+                this.updatePatternScaleDisplay(scale);
+            });
+        }
 
         // Pattern opacity
         const patternOpacitySlider = document.getElementById('patternOpacity');
@@ -483,6 +493,13 @@ class App {
         const element = document.getElementById('patternSpacingValue');
         if (element) {
             element.textContent = `${spacing}px`;
+        }
+    }
+
+    updatePatternScaleDisplay(scale) {
+        const element = document.getElementById('patternScaleValue');
+        if (element) {
+            element.textContent = `${scale}x`;
         }
     }
 
