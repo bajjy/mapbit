@@ -1,0 +1,107 @@
+category,sprite_name,x,y,width,height,description,usage,hex_color,priority
+Building Tiles,tile_solid_01,0,0,8,8,Solid teal block,Wall/floor base,#008080,high
+Building Tiles,tile_textured_01,8,0,8,8,Textured block,Wall variation,#008080,high
+Building Tiles,tile_corner_tl,16,0,8,8,Top-left corner,Building corners,#008080,high
+Building Tiles,tile_corner_tr,24,0,8,8,Top-right corner,Building corners,#008080,high
+Building Tiles,tile_corner_bl,32,0,8,8,Bottom-left corner,Building corners,#008080,high
+Building Tiles,tile_corner_br,40,0,8,8,Bottom-right corner,Building corners,#008080,high
+Building Tiles,tile_edge_h,48,0,8,8,Horizontal edge,Wall edges,#008080,high
+Building Tiles,tile_edge_v,56,0,8,8,Vertical edge,Wall edges,#008080,high
+Building Tiles,tile_diagonal_01,0,8,8,8,Diagonal pattern,Wall texture,#008080,medium
+Building Tiles,tile_diagonal_02,8,8,8,8,Reverse diagonal,Wall texture,#008080,medium
+Building Tiles,tile_brick_01,16,8,8,8,Brick pattern,Wall texture,#008080,medium
+Building Tiles,tile_brick_02,24,8,8,8,Brick offset,Wall texture,#008080,medium
+Building Tiles,tile_stone_01,32,8,8,8,Stone pattern,Wall texture,#008080,medium
+Building Tiles,tile_stone_02,40,8,8,8,Stone variation,Wall texture,#008080,medium
+Building Tiles,tile_wood_01,48,8,8,8,Wood grain,Wall texture,#008080,medium
+Building Tiles,tile_wood_02,56,8,8,8,Wood planks,Wall texture,#008080,medium
+Roof Elements,roof_peak_01,0,32,8,8,Triangular peak,Roof tops,#40E0D0,high
+Roof Elements,roof_peak_02,8,32,8,8,Angled peak,Roof variation,#40E0D0,high
+Roof Elements,roof_slope_l,16,32,8,8,Left slope,Roof sides,#40E0D0,high
+Roof Elements,roof_slope_r,24,32,8,8,Right slope,Roof sides,#40E0D0,high
+Roof Elements,roof_tile_01,32,32,8,8,Roof tile pattern,Roof texture,#40E0D0,medium
+Roof Elements,roof_tile_02,40,32,8,8,Roof tile offset,Roof texture,#40E0D0,medium
+Roof Elements,roof_shingle_01,48,32,8,8,Shingle pattern,Roof texture,#40E0D0,medium
+Roof Elements,roof_shingle_02,56,32,8,8,Shingle variation,Roof texture,#40E0D0,medium
+Border Elements,frame_square_thin,64,0,8,8,Thin square frame,UI border,#4682B4,medium
+Border Elements,frame_square_thick,72,0,8,8,Thick square frame,UI border,#4682B4,medium
+Border Elements,frame_octagon,80,0,8,8,Octagonal frame,UI border,#4682B4,medium
+Border Elements,corner_tl_thin,64,16,8,8,Top-left corner thin,Border assembly,#4682B4,high
+Border Elements,corner_tr_thin,72,16,8,8,Top-right corner thin,Border assembly,#4682B4,high
+Border Elements,corner_bl_thin,80,16,8,8,Bottom-left corner thin,Border assembly,#4682B4,high
+Border Elements,corner_br_thin,88,16,8,8,Bottom-right corner thin,Border assembly,#4682B4,high
+Border Elements,edge_h_thin,64,24,8,8,Horizontal edge thin,Border assembly,#4682B4,high
+Border Elements,edge_v_thin,72,24,8,8,Vertical edge thin,Border assembly,#4682B4,high
+Border Elements,junction_t,80,24,8,8,T-junction,Border assembly,#4682B4,medium
+Border Elements,junction_l,88,24,8,8,L-junction,Border assembly,#4682B4,medium
+Border Elements,corner_tl_thick,64,32,8,8,Top-left corner thick,Border assembly,#4682B4,medium
+Border Elements,corner_tr_thick,72,32,8,8,Top-right corner thick,Border assembly,#4682B4,medium
+Border Elements,corner_bl_thick,80,32,8,8,Bottom-left corner thick,Border assembly,#4682B4,medium
+Border Elements,corner_br_thick,88,32,8,8,Bottom-right corner thick,Border assembly,#4682B4,medium
+Border Elements,edge_h_thick,64,40,8,8,Horizontal edge thick,Border assembly,#4682B4,medium
+Border Elements,edge_v_thick,72,40,8,8,Vertical edge thick,Border assembly,#4682B4,medium
+Structural Elements,block_small,0,24,4,4,Small solid block,Detail element,#004D4D,low
+Structural Elements,block_medium,4,24,6,6,Medium solid block,Detail element,#004D4D,low
+Structural Elements,block_large,10,24,8,8,Large solid block,Main structure,#004D4D,medium
+Structural Elements,line_h_short,0,16,8,2,Short horizontal line,Decorative,#004D4D,low
+Structural Elements,line_h_medium,8,16,8,2,Medium horizontal line,Decorative,#004D4D,low
+Structural Elements,line_h_long,16,16,8,2,Long horizontal line,Decorative,#004D4D,low
+Structural Elements,line_v_short,24,16,2,8,Short vertical line,Decorative,#004D4D,low
+Structural Elements,line_v_medium,26,16,2,8,Medium vertical line,Decorative,#004D4D,low
+Structural Elements,line_v_long,28,16,2,8,Long vertical line,Decorative,#004D4D,low
+UI Elements,circle_solid,0,48,8,8,Solid circle,UI element,#4682B4,medium
+UI Elements,circle_ring_01,8,48,8,8,Single ring,UI element,#4682B4,medium
+UI Elements,circle_ring_02,16,48,8,8,Double ring,UI element,#4682B4,medium
+UI Elements,circle_radial,24,48,8,8,Radial pattern,UI element,#4682B4,medium
+UI Elements,square_solid,0,56,8,8,Solid square,UI element,#4682B4,medium
+UI Elements,square_border,8,56,8,8,Square with border,UI element,#4682B4,medium
+UI Elements,square_cross,16,56,8,8,Square with cross,UI element,#4682B4,medium
+UI Elements,symbol_plus,24,56,8,8,Plus sign,UI element,#4682B4,medium
+UI Elements,gradient_square,0,64,8,8,Gradient fill,Background,#4682B4,low
+Numbers,number_0,0,72,8,8,Digit 0,Text display,#FFFFFF,high
+Numbers,number_1,8,72,8,8,Digit 1,Text display,#FFFFFF,high
+Numbers,number_2,16,72,8,8,Digit 2,Text display,#FFFFFF,high
+Numbers,number_3,24,72,8,8,Digit 3,Text display,#FFFFFF,high
+Numbers,number_4,32,72,8,8,Digit 4,Text display,#FFFFFF,high
+Numbers,number_5,40,72,8,8,Digit 5,Text display,#FFFFFF,high
+Numbers,number_6,48,72,8,8,Digit 6,Text display,#FFFFFF,high
+Numbers,number_7,56,72,8,8,Digit 7,Text display,#FFFFFF,high
+Numbers,number_8,0,80,8,8,Digit 8,Text display,#FFFFFF,high
+Numbers,number_9,8,80,8,8,Digit 9,Text display,#FFFFFF,high
+Punctuation,symbol_colon,16,80,8,8,Colon,Text display,#FFFFFF,medium
+Punctuation,symbol_period,24,80,8,8,Period,Text display,#FFFFFF,medium
+Decorative,shape_circle_small,64,32,4,4,Small circle,Decorative,#40E0D0,low
+Decorative,shape_oval,68,32,6,4,Oval shape,Decorative,#40E0D0,low
+Decorative,shape_diamond,72,32,4,4,Diamond shape,Decorative,#40E0D0,low
+Decorative,shape_cross,76,32,4,4,Cross shape,Decorative,#40E0D0,low
+Decorative,texture_dots,64,40,8,8,Dotted texture,Ground/background,#004D4D,low
+Decorative,texture_lines,72,40,8,8,Lined texture,Ground/background,#004D4D,low
+Decorative,texture_checker,80,40,8,8,Checker pattern,Ground/background,#004D4D,low
+Decorative,texture_noise,88,40,8,8,Noise pattern,Ground/background,#004D4D,low
+Navigation,arrow_up,64,48,4,4,Up arrow,UI navigation,#FFFFFF,medium
+Navigation,arrow_down,68,48,4,4,Down arrow,UI navigation,#FFFFFF,medium
+Navigation,arrow_left,72,48,4,4,Left arrow,UI navigation,#FFFFFF,medium
+Navigation,arrow_right,76,48,4,4,Right arrow,UI navigation,#FFFFFF,medium
+Navigation,arrow_diag_ul,80,48,4,4,Diagonal up-left,UI navigation,#FFFFFF,low
+Navigation,arrow_diag_ur,84,48,4,4,Diagonal up-right,UI navigation,#FFFFFF,low
+Navigation,arrow_diag_dl,88,48,4,4,Diagonal down-left,UI navigation,#FFFFFF,low
+Navigation,arrow_diag_dr,92,48,4,4,Diagonal down-right,UI navigation,#FFFFFF,low
+Celestial,planet_solid,64,56,8,8,Solid planet,Space theme,#4682B4,low
+Celestial,planet_ringed,72,56,8,8,Ringed planet,Space theme,#4682B4,low
+Celestial,planet_cratered,80,56,8,8,Cratered planet,Space theme,#4682B4,low
+Celestial,star_small,88,56,4,4,Small star,Space theme,#FFFFFF,low
+Celestial,star_large,92,56,6,6,Large star,Space theme,#FFFFFF,low
+Controls,symbol_play,64,64,4,4,Play button,UI control,#FFFFFF,medium
+Controls,symbol_pause,68,64,4,4,Pause button,UI control,#FFFFFF,medium
+Controls,symbol_stop,72,64,4,4,Stop button,UI control,#FFFFFF,medium
+Controls,symbol_rewind,76,64,4,4,Rewind button,UI control,#FFFFFF,low
+Controls,symbol_forward,80,64,4,4,Forward button,UI control,#FFFFFF,low
+Controls,symbol_record,84,64,4,4,Record button,UI control,#FF0000,low
+Fine Details,dot_single,0,40,1,1,Single pixel dot,Fine detail,#FFFFFF,low
+Fine Details,dot_double,2,40,2,1,Double pixel dot,Fine detail,#FFFFFF,low
+Fine Details,dot_triple,4,40,3,1,Triple pixel dot,Fine detail,#FFFFFF,low
+Fine Details,dot_quad,6,40,4,1,Quad pixel dot,Fine detail,#FFFFFF,low
+Fine Details,line_diag_01,8,40,4,4,Diagonal line 1,Fine detail,#FFFFFF,low
+Fine Details,line_diag_02,12,40,4,4,Diagonal line 2,Fine detail,#FFFFFF,low
+Fine Details,line_diag_03,16,40,4,4,Diagonal line 3,Fine detail,#FFFFFF,low
+Fine Details,line_diag_04,20,40,4,4,Diagonal line 4,Fine detail,#FFFFFF,low

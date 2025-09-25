@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprite System Demo - Pixelated Buildings</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #3498db;
+            font-size: 2rem;
+            text-shadow: 2px 2px 0px #2c3e50;
+        }
+        
+        .demo-section {
+            background: #34495e;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-section h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .control-group label {
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .control-group select,
+        .control-group input {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border: 1px solid #3498db;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .canvas-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .canvas-wrapper {
+            background: #2c3e50;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .canvas-wrapper h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        canvas {
+            border: 1px solid #3498db;
+            background: #ecf0f1;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+        
+        .info {
+            background: #2c3e50;
+            border: 1px solid #3498db;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .info h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .info li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info li:before {
+            content: "🎮";
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1>🎮 Sprite System Demo</h1>
+            <p>Pixelated Building Construction with Sprite Borders and Patterns</p>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎨 Building Style Controls</h2>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="buildingStyle">Building Style:</label>
+                    <select id="buildingStyle">
+                        <option value="basic">Basic House</option>
+                        <option value="stone">Stone House</option>
+                        <option value="wooden">Wooden House</option>
+                        <option value="modern">Modern House</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="spriteScale">Sprite Scale:</label>
+                    <input type="range" id="spriteScale" min="1" max="4" step="1" value="2">
+                    <span id="scaleValue">2x</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="roofType">Roof Type:</label>
+                    <select id="roofType">
+                        <option value="peak">Peak</option>
+                        <option value="slope">Slope</option>
+                        <option value="flat">Flat</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="showBorder" checked>
+                        Show Border
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="showRoof" checked>
+                        Show Roof
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🏠 Building Renderings</h2>
+            <div class="canvas-container">
+                <div class="canvas-wrapper">
+                    <h3>Basic House</h3>
+                    <canvas id="basicCanvas" width="200" height="150"></canvas>
+                </div>
+                
+                <div class="canvas-wrapper">
+                    <h3>Stone House</h3>
+                    <canvas id="stoneCanvas" width="200" height="150"></canvas>
+                </div>
+                
+                <div class="canvas-wrapper">
+                    <h3>Wooden House</h3>
+                    <canvas id="woodenCanvas" width="200" height="150"></canvas>
+                </div>
+                
+                <div class="canvas-wrapper">
+                    <h3>Modern House</h3>
+                    <canvas id="modernCanvas" width="200" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>🎮 How to Use the Sprite System</h3>
+            <ul>
+                <li><strong>Building Styles:</strong> Choose from Basic, Stone, Wooden, or Modern house styles</li>
+                <li><strong>Sprite Scale:</strong> Adjust the size of sprites (1x to 4x)</li>
+                <li><strong>Roof Types:</strong> Select Peak, Slope, or Flat roof styles</li>
+                <li><strong>Borders:</strong> Toggle decorative borders around buildings</li>
+                <li><strong>Roofs:</strong> Toggle roof rendering on buildings</li>
+                <li><strong>Integration:</strong> This system works with the orthogonalization system for 90-degree angles</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        import { BuildingRenderer } from './client/js/BuildingRenderer.js';
+        
+        class SpriteDemo {
+            constructor() {
+                this.canvases = {
+                    basic: document.getElementById('basicCanvas'),
+                    stone: document.getElementById('stoneCanvas'),
+                    wooden: document.getElementById('woodenCanvas'),
+                    modern: document.getElementById('modernCanvas')
+                };
+                
+                this.renderers = {};
+                this.currentScale = 2;
+                this.currentRoofType = 'peak';
+                this.showBorder = true;
+                this.showRoof = true;
+                
+                this.init();
+            }
+            
+            async init() {
+                // Initialize renderers for each canvas
+                for (const [style, canvas] of Object.entries(this.canvases)) {
+                    this.renderers[style] = new BuildingRenderer(canvas);
+                    this.renderers[style].setStyle(style);
+                }
+                
+                // Set up event listeners
+                this.setupEventListeners();
+                
+                // Initial render
+                this.renderAll();
+                
+                console.log('🎮 Sprite Demo initialized');
+            }
+            
+            setupEventListeners() {
+                // Building style selector
+                document.getElementById('buildingStyle').addEventListener('change', (e) => {
+                    this.renderAll();
+                });
+                
+                // Sprite scale slider
+                const scaleSlider = document.getElementById('spriteScale');
+                const scaleValue = document.getElementById('scaleValue');
+                
+                scaleSlider.addEventListener('input', (e) => {
+                    this.currentScale = parseInt(e.target.value);
+                    scaleValue.textContent = `${this.currentScale}x`;
+                    this.renderAll();
+                });
+                
+                // Roof type selector
+                document.getElementById('roofType').addEventListener('change', (e) => {
+                    this.currentRoofType = e.target.value;
+                    this.renderAll();
+                });
+                
+                // Border toggle
+                document.getElementById('showBorder').addEventListener('change', (e) => {
+                    this.showBorder = e.target.checked;
+                    this.renderAll();
+                });
+                
+                // Roof toggle
+                document.getElementById('showRoof').addEventListener('change', (e) => {
+                    this.showRoof = e.target.checked;
+                    this.renderAll();
+                });
+            }
+            
+            renderAll() {
+                // Sample building coordinates (rectangular buildings)
+                const buildingCoords = [
+                    [50, 50], [150, 50], [150, 100], [50, 100], [50, 50]
+                ];
+                
+                for (const [style, renderer] of Object.entries(this.renderers)) {
+                    // Clear canvas
+                    renderer.clear();
+                    
+                    // Set scale
+                    renderer.spriteRenderer.setScale(this.currentScale);
+                    
+                    // Render building
+                    renderer.renderBuilding(
+                        { id: `${style}-building` },
+                        buildingCoords,
+                        {
+                            showBorder: this.showBorder,
+                            showRoof: this.showRoof,
+                            roofType: this.currentRoofType,
+                            borderThickness: 1,
+                            scale: this.currentScale
+                        }
+                    );
+                }
+            }
+        }
+        
+        // Initialize demo when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new SpriteDemo();
+        });
+    </script>
+</body>
+</html>

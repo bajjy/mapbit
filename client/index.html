@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM RPG Map Converter</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>🗺️ OSM RPG Map Converter</h1>
+            <div class="controls">
+                <button id="loadLocation" class="btn btn-primary">📍 Load My Location</button>
+                <button id="loadBuildings" class="btn btn-secondary">🏠 Load Buildings</button>
+                <button id="processMap" class="btn btn-accent">✨ Process for RPG</button>
+                <button id="toggleGrid" class="btn btn-outline">📐 Toggle Grid</button>
+                <div class="location-input">
+                    <input type="text" id="manualLocation" placeholder="Enter coordinates (lat, lng)" style="margin: 5px; padding: 5px; width: 200px;">
+                    <button id="setManualLocation" class="btn btn-outline">📍 Set Location</button>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="panel">
+                    <h3>🎮 Map Features</h3>
+                    <div class="feature-controls">
+                        <label>
+                            <input type="checkbox" id="showBuildings" checked>
+                            Buildings
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showRoads">
+                            Roads
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showWater">
+                            Water
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showParks">
+                            Parks
+                        </label>
+                        <label>
+                            <input type="checkbox" id="hideMap">
+                            Hide Map
+                        </label>
+                        <label>
+                            <input type="checkbox" id="hideOriginalPolygon">
+                            Hide Original Polygon
+                        </label>
+                        <div class="feature-status">
+                            <div>Map: <span id="hideMapStatus">Visible</span></div>
+                            <div>Polygon: <span id="hidePolygonStatus">Visible</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>🎨 RPG Style</h3>
+                    <div class="style-controls">
+                        <label>
+                            G:
+                            <input type="range" id="gridSize" min="0.000001" max="0.001" step="0.000001" value="0.000001">
+                            <span id="gridSizeValue">0.000001</span>
+                        </label>
+                        <label>
+                            S:
+                            <input type="range" id="tolerance" min="0" max="0.01" step="0.00001" value="0.00003">
+                            <span id="toleranceValue">0.00003</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="pixelArtMode" checked>
+                            Pixel Art Mode
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>🎮 Sprite System</h3>
+                    <div class="sprite-controls">
+                        <label>
+                            <input type="checkbox" id="toggleSpriteMode">
+                            Enable Sprite Mode
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showShape">
+                            Show Shape
+                        </label>
+                        <label>
+                            Building Style:
+                            <select id="buildingStyle">
+                                <option value="basic">Basic House</option>
+                                <option value="stone">Stone House</option>
+                                <option value="wooden">Wooden House</option>
+                                <option value="modern">Modern House</option>
+                            </select>
+                        </label>
+                        <label>
+                            Sprite Scale:
+                            <input type="range" id="spriteScale" min="0.5" max="4" step="0.5" value="2">
+                            <span id="spriteScaleValue">2x</span>
+                        </label>
+                        <div class="pattern-controls">
+                            <h4>Pattern Properties</h4>
+                            <label>
+                                Size:
+                                <input type="range" id="patternSize" min="4" max="16" step="2" value="8">
+                                <span id="patternSizeValue">8px</span>
+                            </label>
+                            <label>
+                                Spacing:
+                                <input type="range" id="patternSpacing" min="0" max="8" step="1" value="0">
+                                <span id="patternSpacingValue">0px</span>
+                            </label>
+                            <label>
+                                Opacity:
+                                <input type="range" id="patternOpacity" min="0.1" max="1" step="0.1" value="1">
+                                <span id="patternOpacityValue">100%</span>
+                            </label>
+                            <label>
+                                Color Overlay:
+                                <input type="color" id="patternColor" value="#000000">
+                                <input type="range" id="patternColorOpacity" min="0" max="1" step="0.1" value="0">
+                                <span id="patternColorOpacityValue">0%</span>
+                            </label>
+                            <label>
+                                Alignment:
+                                <select id="patternAlign">
+                                    <option value="center">Center</option>
+                                    <option value="top-left">Top-Left</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="sprite-status">
+                            <div>Mode: <span id="spriteModeStatus">Disabled</span></div>
+                            <div>Shape: <span id="shapeStatus">Disabled</span></div>
+                            <div>Style: <span id="buildingStyleStatus">Basic</span></div>
+                            <div>Scale: <span id="spriteScaleStatus">2x</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>📊 Stats</h3>
+                    <div id="stats" class="stats">
+                        <div>Features: <span id="featureCount">0</span></div>
+                        <div>Buildings: <span id="buildingCount">0</span></div>
+                        <div>Area: <span id="totalArea">0</span> m²</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading OSM data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

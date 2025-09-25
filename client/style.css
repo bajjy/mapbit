@@ -1,0 +1,419 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #2c3e50;
+    color: #ecf0f1;
+    overflow: hidden;
+}
+
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: #34495e;
+    padding: 1rem;
+    border-bottom: 2px solid #3498db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header h1 {
+    color: #3498db;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 0px #2c3e50;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.btn-primary:hover {
+    background: #3498db;
+    color: #2c3e50;
+}
+
+.btn-secondary {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.btn-secondary:hover {
+    background: #e74c3c;
+    color: #ecf0f1;
+}
+
+.btn-accent {
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.btn-accent:hover {
+    background: #f39c12;
+    color: #2c3e50;
+}
+
+.btn-outline {
+    border-color: #95a5a6;
+    color: #95a5a6;
+}
+
+.btn-outline:hover {
+    background: #95a5a6;
+    color: #2c3e50;
+}
+
+/* Main content */
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    background: #34495e;
+    border-right: 2px solid #3498db;
+    padding: 1rem;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.panel {
+    background: #2c3e50;
+    border: 1px solid #3498db;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.panel h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.feature-controls, .style-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.feature-controls label, .style-controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.feature-controls input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #3498db;
+}
+
+.style-controls input[type="range"] {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.stats div {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Map container */
+.map-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Loading overlay */
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #3498db;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* RPG-style map overlays */
+.rpg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    background-image: 
+        linear-gradient(rgba(52, 152, 219, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52, 152, 219, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Custom Leaflet styles for RPG theme */
+.leaflet-container {
+    background: #1a252f !important;
+}
+
+/* Location marker styling */
+.location-marker {
+    background: transparent !important;
+    border: none !important;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.location-popup {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.leaflet-popup-content-wrapper {
+    background: #2c3e50 !important;
+    color: #ecf0f1 !important;
+    border: 2px solid #3498db !important;
+    border-radius: 0 !important;
+}
+
+.leaflet-popup-tip {
+    background: #2c3e50 !important;
+    border: 2px solid #3498db !important;
+}
+
+/* Pixel art patterns */
+.pixel-pattern {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Sprite System Styles */
+.sprite-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sprite-controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.sprite-controls select {
+    background: #34495e;
+    color: #ecf0f1;
+    border: 1px solid #3498db;
+    padding: 0.25rem;
+    font-family: inherit;
+    border-radius: 3px;
+}
+
+.sprite-controls select:focus {
+    outline: none;
+    border-color: #e74c3c;
+}
+
+.sprite-status {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #2c3e50;
+    border: 1px solid #3498db;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.sprite-status div {
+    margin-bottom: 0.25rem;
+}
+
+.sprite-status div:last-child {
+    margin-bottom: 0;
+}
+
+.sprite-status span {
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Sprite mode active indicator */
+.sprite-mode-active .sprite-status {
+    border-color: #e74c3c;
+    background: #2c3e50;
+}
+
+.sprite-mode-active .sprite-status span {
+    color: #e74c3c;
+}
+
+/* Feature status styling */
+.feature-status {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #2c3e50;
+    border: 1px solid #3498db;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.feature-status div {
+    margin-bottom: 0.25rem;
+}
+
+.feature-status div:last-child {
+    margin-bottom: 0;
+}
+
+.feature-status span {
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Pattern controls styling */
+.pattern-controls {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #2c3e50;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+}
+
+.pattern-controls h4 {
+    margin: 0 0 0.5rem 0;
+    color: #3498db;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pattern-controls label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #ecf0f1;
+}
+
+.pattern-controls input[type="range"] {
+    width: 100%;
+    margin: 0.25rem 0;
+}
+
+.pattern-controls input[type="color"] {
+    width: 30px;
+    height: 20px;
+    border: none;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.pattern-controls span {
+    color: #3498db;
+    font-weight: bold;
+    font-size: 0.75rem;
+}

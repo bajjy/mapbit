@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM RPG Map Converter - Demo</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #3498db;
+            text-shadow: 2px 2px 0px #2c3e50;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: #34495e;
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .feature-card h3 {
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            background: #27ae60;
+            border-radius: 4px;
+            display: none;
+        }
+        .status.error {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ OSM RPG Map Converter</h1>
+        <p>Convert OpenStreetMap vector objects to RPG-style pixel art maps</p>
+        
+        <div class="status" id="status"></div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🏠 Buildings</h3>
+                <p>Convert complex building polygons to 90-degree orthogonal shapes</p>
+            </div>
+            <div class="feature-card">
+                <h3>🛣️ Roads</h3>
+                <p>Style roads and paths with pixel art aesthetics</p>
+            </div>
+            <div class="feature-card">
+                <h3>💧 Water</h3>
+                <p>Process water features with retro styling</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌳 Parks</h3>
+                <p>Transform green spaces into RPG-style areas</p>
+            </div>
+        </div>
+        
+        <div>
+            <a href="client/index.html" class="btn">🎮 Launch App</a>
+            <a href="#" class="btn" onclick="testServer()">🔧 Test Server</a>
+        </div>
+        
+        <div style="margin-top: 40px; text-align: left;">
+            <h3>🚀 Quick Start:</h3>
+            <ol>
+                <li>Click "Launch App" to open the main application</li>
+                <li>Click "📍 Load My Location" to set your location</li>
+                <li>Click "🏠 Load Buildings" to fetch OSM data</li>
+                <li>Click "✨ Process for RPG" to apply retro styling</li>
+                <li>Use the sidebar controls to customize the appearance</li>
+            </ol>
+            
+            <h3>🛠️ Development:</h3>
+            <p>To start the development servers:</p>
+            <pre style="background: #34495e; padding: 10px; border-radius: 4px;">
+npm run install:all
+npm run dev
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        async function testServer() {
+            const status = document.getElementById('status');
+            status.style.display = 'block';
+            status.className = 'status';
+            status.textContent = 'Testing server connection...';
+            
+            try {
+                const response = await fetch('http://localhost:3001/health');
+                if (response.ok) {
+                    status.className = 'status';
+                    status.textContent = '✅ Server is running! Ready to use the app.';
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                status.className = 'status error';
+                status.textContent = '❌ Server is not running. Please start the development server first.';
+            }
+        }
+        
+        // Auto-test server on load
+        window.addEventListener('load', () => {
+            setTimeout(testServer, 1000);
+        });
+    </script>
+</body>
+</html>

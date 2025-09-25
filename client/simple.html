@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM RPG Map Converter - Simple Test</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #3498db;
+            color: #2c3e50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        #map {
+            height: 600px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            background: #27ae60;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .status.error {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ OSM RPG Map Converter - Simple Test</h1>
+        
+        <div class="controls">
+            <button class="btn" onclick="loadLocation()">📍 Load NYC</button>
+            <button class="btn" onclick="loadOSMData()">🏠 Load Buildings</button>
+            <button class="btn" onclick="testServer()">🔧 Test Server</button>
+        </div>
+        
+        <div id="status" class="status" style="display: none;"></div>
+        
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let map;
+        let currentLocation = { lat: 40.7128, lng: -74.0060 };
+        
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([currentLocation.lat, currentLocation.lng], 15);
+            
+            // Add a simple tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            showStatus('Map initialized successfully!', 'success');
+        }
+        
+        function loadLocation() {
+            map.setView([currentLocation.lat, currentLocation.lng], 15);
+            showStatus('Location set to NYC', 'success');
+        }
+        
+        async function loadOSMData() {
+            try {
+                showStatus('Loading OSM data...', 'info');
+                
+                const bounds = map.getBounds();
+                const bbox = {
+                    north: bounds.getNorth(),
+                    south: bounds.getSouth(),
+                    east: bounds.getEast(),
+                    west: bounds.getWest()
+                };
+                
+                const response = await fetch('http://localhost:3012/api/osm/fetch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        bounds: bbox,
+                        features: ['buildings']
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Clear existing layers
+                map.eachLayer(layer => {
+                    if (layer !== map._layers[Object.keys(map._layers)[0]]) {
+                        map.removeLayer(layer);
+                    }
+                });
+                
+                // Add GeoJSON layer
+                if (data.features && data.features.length > 0) {
+                    L.geoJSON(data, {
+                        style: {
+                            color: '#e74c3c',
+                            weight: 2,
+                            opacity: 0.8,
+                            fillOpacity: 0.3
+                        },
+                        onEachFeature: function(feature, layer) {
+                            if (feature.properties && feature.properties.building) {
+                                layer.bindPopup(`Building: ${feature.properties.building}`);
+                            }
+                        }
+                    }).addTo(map);
+                    
+                    showStatus(`Loaded ${data.features.length} features!`, 'success');
+                } else {
+                    showStatus('No features found in this area', 'info');
+                }
+                
+            } catch (error) {
+                console.error('Error loading OSM data:', error);
+                showStatus(`Error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testServer() {
+            try {
+                showStatus('Testing server connection...', 'info');
+                
+                const response = await fetch('http://localhost:3012/health');
+                if (response.ok) {
+                    showStatus('✅ Server is running!', 'success');
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                showStatus('❌ Server is not running. Please start the server first.', 'error');
+            }
+        }
+        
+        function showStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            if (type === 'success' || type === 'error') {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', initMap);
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+{
+  "spriteSheet": {
+    "imagePath": "assets/minimal_8_base_v2_2-bit - blue.png",
+    "totalWidth": 96,
+    "totalHeight": 88,
+    "spriteSize": 8,
+    "description": "Pixel art sprite sheet for RPG building construction"
+  },
+  "colorPalette": {
+    "primaryTeal": "#008080",
+    "lightTeal": "#40E0D0", 
+    "darkTeal": "#004D4D",
+    "accentBlue": "#4682B4",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "red": "#FF0000"
+  },
+  "buildingStyles": {
+    "basic": {
+      "name": "Basic House",
+      "description": "Simple rectangular house with basic materials",
+      "wallSprites": ["tile_solid_01", "tile_brick_01"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_peak_01", "roof_tile_01"],
+      "borderSprites": ["corner_tl_thin", "corner_tr_thin", "corner_bl_thin", "corner_br_thin"],
+      "priority": "high"
+    },
+    "stone": {
+      "name": "Stone House",
+      "description": "Sturdy stone construction with thick walls",
+      "wallSprites": ["tile_stone_01", "tile_stone_02"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_peak_02", "roof_shingle_01"],
+      "borderSprites": ["corner_tl_thick", "corner_tr_thick", "corner_bl_thick", "corner_br_thick"],
+      "priority": "high"
+    },
+    "wooden": {
+      "name": "Wooden House",
+      "description": "Traditional wooden construction with shingle roof",
+      "wallSprites": ["tile_wood_01", "tile_wood_02"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_slope_l", "roof_slope_r", "roof_shingle_02"],
+      "borderSprites": ["edge_h_thin", "edge_v_thin"],
+      "priority": "high"
+    },
+    "modern": {
+      "name": "Modern House",
+      "description": "Contemporary design with clean lines",
+      "wallSprites": ["tile_solid_01", "tile_textured_01"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_peak_01", "roof_tile_02"],
+      "borderSprites": ["frame_square_thin"],
+      "priority": "medium"
+    },
+    "castle": {
+      "name": "Castle",
+      "description": "Fortified structure with thick stone walls",
+      "wallSprites": ["tile_stone_01", "tile_stone_02", "block_large"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_peak_02", "roof_tile_01"],
+      "borderSprites": ["corner_tl_thick", "corner_tr_thick", "corner_bl_thick", "corner_br_thick"],
+      "priority": "medium"
+    },
+    "cottage": {
+      "name": "Cottage",
+      "description": "Charming small house with decorative elements",
+      "wallSprites": ["tile_wood_01", "tile_brick_01"],
+      "cornerSprites": ["tile_corner_tl", "tile_corner_tr", "tile_corner_bl", "tile_corner_br"],
+      "edgeSprites": ["tile_edge_h", "tile_edge_v"],
+      "roofSprites": ["roof_slope_l", "roof_slope_r", "roof_shingle_01"],
+      "borderSprites": ["corner_tl_thin", "corner_tr_thin", "corner_bl_thin", "corner_br_thin"],
+      "priority": "medium"
+    }
+  },
+  "spriteCategories": {
+    "buildingTiles": {
+      "description": "Core building construction sprites",
+      "sprites": [
+        {"name": "tile_solid_01", "x": 0, "y": 0, "width": 8, "height": 8, "usage": "Wall/floor base"},
+        {"name": "tile_textured_01", "x": 8, "y": 0, "width": 8, "height": 8, "usage": "Wall variation"},
+        {"name": "tile_corner_tl", "x": 16, "y": 0, "width": 8, "height": 8, "usage": "Top-left corner"},
+        {"name": "tile_corner_tr", "x": 24, "y": 0, "width": 8, "height": 8, "usage": "Top-right corner"},
+        {"name": "tile_corner_bl", "x": 32, "y": 0, "width": 8, "height": 8, "usage": "Bottom-left corner"},
+        {"name": "tile_corner_br", "x": 40, "y": 0, "width": 8, "height": 8, "usage": "Bottom-right corner"},
+        {"name": "tile_edge_h", "x": 48, "y": 0, "width": 8, "height": 8, "usage": "Horizontal edge"},
+        {"name": "tile_edge_v", "x": 56, "y": 0, "width": 8, "height": 8, "usage": "Vertical edge"},
+        {"name": "tile_brick_01", "x": 16, "y": 8, "width": 8, "height": 8, "usage": "Brick pattern"},
+        {"name": "tile_brick_02", "x": 24, "y": 8, "width": 8, "height": 8, "usage": "Brick offset"},
+        {"name": "tile_stone_01", "x": 32, "y": 8, "width": 8, "height": 8, "usage": "Stone pattern"},
+        {"name": "tile_stone_02", "x": 40, "y": 8, "width": 8, "height": 8, "usage": "Stone variation"},
+        {"name": "tile_wood_01", "x": 48, "y": 8, "width": 8, "height": 8, "usage": "Wood grain"},
+        {"name": "tile_wood_02", "x": 56, "y": 8, "width": 8, "height": 8, "usage": "Wood planks"}
+      ]
+    },
+    "roofElements": {
+      "description": "Roof construction and styling sprites",
+      "sprites": [
+        {"name": "roof_peak_01", "x": 0, "y": 32, "width": 8, "height": 8, "usage": "Triangular peak"},
+        {"name": "roof_peak_02", "x": 8, "y": 32, "width": 8, "height": 8, "usage": "Angled peak"},
+        {"name": "roof_slope_l", "x": 16, "y": 32, "width": 8, "height": 8, "usage": "Left slope"},
+        {"name": "roof_slope_r", "x": 24, "y": 32, "width": 8, "height": 8, "usage": "Right slope"},
+        {"name": "roof_tile_01", "x": 32, "y": 32, "width": 8, "height": 8, "usage": "Roof tile pattern"},
+        {"name": "roof_tile_02", "x": 40, "y": 32, "width": 8, "height": 8, "usage": "Roof tile offset"},
+        {"name": "roof_shingle_01", "x": 48, "y": 32, "width": 8, "height": 8, "usage": "Shingle pattern"},
+        {"name": "roof_shingle_02", "x": 56, "y": 32, "width": 8, "height": 8, "usage": "Shingle variation"}
+      ]
+    },
+    "borderElements": {
+      "description": "Border and frame construction sprites",
+      "sprites": [
+        {"name": "frame_square_thin", "x": 64, "y": 0, "width": 8, "height": 8, "usage": "Thin square frame"},
+        {"name": "frame_square_thick", "x": 72, "y": 0, "width": 8, "height": 8, "usage": "Thick square frame"},
+        {"name": "frame_octagon", "x": 80, "y": 0, "width": 8, "height": 8, "usage": "Octagonal frame"},
+        {"name": "corner_tl_thin", "x": 64, "y": 16, "width": 8, "height": 8, "usage": "Top-left corner thin"},
+        {"name": "corner_tr_thin", "x": 72, "y": 16, "width": 8, "height": 8, "usage": "Top-right corner thin"},
+        {"name": "corner_bl_thin", "x": 80, "y": 16, "width": 8, "height": 8, "usage": "Bottom-left corner thin"},
+        {"name": "corner_br_thin", "x": 88, "y": 16, "width": 8, "height": 8, "usage": "Bottom-right corner thin"},
+        {"name": "edge_h_thin", "x": 64, "y": 24, "width": 8, "height": 8, "usage": "Horizontal edge thin"},
+        {"name": "edge_v_thin", "x": 72, "y": 24, "width": 8, "height": 8, "usage": "Vertical edge thin"},
+        {"name": "junction_t", "x": 80, "y": 24, "width": 8, "height": 8, "usage": "T-junction"},
+        {"name": "junction_l", "x": 88, "y": 24, "width": 8, "height": 8, "usage": "L-junction"}
+      ]
+    },
+    "numbers": {
+      "description": "Number sprites for text display",
+      "sprites": [
+        {"name": "number_0", "x": 0, "y": 72, "width": 8, "height": 8, "usage": "Digit 0"},
+        {"name": "number_1", "x": 8, "y": 72, "width": 8, "height": 8, "usage": "Digit 1"},
+        {"name": "number_2", "x": 16, "y": 72, "width": 8, "height": 8, "usage": "Digit 2"},
+        {"name": "number_3", "x": 24, "y": 72, "width": 8, "height": 8, "usage": "Digit 3"},
+        {"name": "number_4", "x": 32, "y": 72, "width": 8, "height": 8, "usage": "Digit 4"},
+        {"name": "number_5", "x": 40, "y": 72, "width": 8, "height": 8, "usage": "Digit 5"},
+        {"name": "number_6", "x": 48, "y": 72, "width": 8, "height": 8, "usage": "Digit 6"},
+        {"name": "number_7", "x": 56, "y": 72, "width": 8, "height": 8, "usage": "Digit 7"},
+        {"name": "number_8", "x": 0, "y": 80, "width": 8, "height": 8, "usage": "Digit 8"},
+        {"name": "number_9", "x": 8, "y": 80, "width": 8, "height": 8, "usage": "Digit 9"}
+      ]
+    },
+    "uiElements": {
+      "description": "User interface elements",
+      "sprites": [
+        {"name": "circle_solid", "x": 0, "y": 48, "width": 8, "height": 8, "usage": "Solid circle"},
+        {"name": "circle_ring_01", "x": 8, "y": 48, "width": 8, "height": 8, "usage": "Single ring"},
+        {"name": "circle_ring_02", "x": 16, "y": 48, "width": 8, "height": 8, "usage": "Double ring"},
+        {"name": "circle_radial", "x": 24, "y": 48, "width": 8, "height": 8, "usage": "Radial pattern"},
+        {"name": "square_solid", "x": 0, "y": 56, "width": 8, "height": 8, "usage": "Solid square"},
+        {"name": "square_border", "x": 8, "y": 56, "width": 8, "height": 8, "usage": "Square with border"},
+        {"name": "square_cross", "x": 16, "y": 56, "width": 8, "height": 8, "usage": "Square with cross"},
+        {"name": "symbol_plus", "x": 24, "y": 56, "width": 8, "height": 8, "usage": "Plus sign"}
+      ]
+    }
+  },
+  "implementation": {
+    "usage": "Import this configuration to create pixelated buildings with sprite-based borders and patterns",
+    "integration": "Use with the orthogonalization system to create 90-degree angle buildings with authentic pixel art styling",
+    "examples": {
+      "basicHouse": "Use basic building style with solid tiles and simple roof",
+      "stoneHouse": "Use stone tiles with thick borders for fortified appearance", 
+      "woodenHouse": "Use wood tiles with shingle roof for traditional look",
+      "modernHouse": "Use textured tiles with clean borders for contemporary design"
+    }
+  }
+}
